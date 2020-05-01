@@ -1,5 +1,6 @@
 import socket
 from os import listdir
+import time
 port = 1234
 print('connected to the remote server:',socket.gethostname(),'port 1234')
 
@@ -15,6 +16,7 @@ def main():
         print('1)List : list of all the files in system')
         print('2)Read : Read the specified file')
         print('3)Write : Append data the specified file')
+        print('4)View : View mode of file')
         print('--------------------------------------------')
         client_input = int(input('enter a your choice'))
         if client_input == 1:
@@ -48,7 +50,24 @@ def main():
             msg3 = s.recv(50000)
             msg3 = msg3.decode("utf-8")
             print(msg3)
+        if (client_input == 4):
+            s.send(bytes("View",'utf-8'))
+            msg = s.recv(1024)
+            msg = msg.decode('utf-8')
+            print(msg)
+            i = input('enter a filename')
+            s.send(bytes(i,'utf-8'))
+            msg = s.recv(1024)
+            msg1 = msg.decode("utf-8")
+            print(msg1)
+            while True:
+                msg = s.recv(5000)
+                msg1 = msg.decode("utf-8")
             
+                time.sleep(1)
+                print(msg1)
+            
+                
 if __name__ == "__main__":
     main()
     
