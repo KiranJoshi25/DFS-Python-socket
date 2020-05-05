@@ -12,7 +12,7 @@ def main():
         s.connect(('10.0.0.99', port))
 
         print('--------------------------------------------')
-        print('Make your choice')
+        print('Make your choice ')
         print('1)List : list of all the files in system')
         print('2)Read : Read the specified file')
         print('3)Write : Append data the specified file')
@@ -66,7 +66,8 @@ def main():
             
                 time.sleep(1)
                 print(msg1)
-            
+        else:
+            print('invalid choice')
                 
 if __name__ == "__main__":
     main()
